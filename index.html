@@ -10,8 +10,8 @@
   <div id="app">
     {{ message }}
     <p>Email: {{ email }}</p>
-    <button v-on:click="getRemoteMessage">Click</button>
   </div>
+  <button onclick="clickButton()">Outside Button</button>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script>
@@ -20,16 +20,15 @@
       data: {
         message: 'init text, it will be covered after clicking button',
         email: 'sam@test.com'
-      },
-      methods: {
-        getRemoteMessage() {
-          Promise.resolve("Hey, don't click me!")
-            .then((res) => {
-              this.message = res;
-            });
-        },
-      },
+      }
     });
+
+    function clickButton() {
+      Promise.resolve("Hey, don't click me! - from outside button")
+        .then((res) => {
+          vue.message = res;
+        });
+    }
   </script>
 </body>
 
