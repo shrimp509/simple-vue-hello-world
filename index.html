@@ -7,28 +7,31 @@
 </head>
 
 <body>
-  <div id="app">
-    {{ message }}
-    <p>Email: {{ email }}</p>
-  </div>
-  <button onclick="clickButton()">Outside Button</button>
-
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <div id="app">
+    {{ number }}
+    <br>
+    {{ old_number }}
+  </div>
+  <button onclick='clickEvent()'>Outside Button</button>
+
   <script>
     var vue = new Vue({
-      el: '#app', // element
+      el: '#app',
       data: {
-        message: 'init text, it will be covered after clicking button',
-        email: 'sam@test.com'
+        number: 1,
+        old_number: 'old',
       }
-    });
+    })
 
-    function clickButton() {
-      Promise.resolve("Hey, don't click me! - from outside button")
-        .then((res) => {
-          vue.message = res;
-        });
+    function clickEvent() {
+      vue.number += 1;
     }
+
+    vue.$watch('number', function (newValue, oldValue) {
+      this.old_number = oldValue;
+    })
   </script>
 </body>
 

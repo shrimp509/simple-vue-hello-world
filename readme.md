@@ -49,3 +49,35 @@ function outsideButtonClickEvent() {
     });
 }
 ```
+
+3. 可以在 console 透過 `vue.$data.message`、`vue.message` 兩種方式得到值
+
+4. 寫一個監聽事件，讓兩個值之間產生關係
+
+```js
+<div id="app">  // 在 app 內有兩個變數
+  {{ number }}
+  <br>
+  {{ old_number }}
+</div>
+
+<button onclick='clickEvent()'>Outside Button</button>
+
+<script>
+  var vue = new Vue({
+    el: '#app',
+    data: {
+      number: 1,
+      old_number: 'old',
+    }
+  })
+
+  function clickEvent() {
+    vue.number += 1;
+  }
+
+  vue.$watch('number', function (newValue, oldValue) {
+    this.old_number = oldValue;
+  })
+</script>
+```
