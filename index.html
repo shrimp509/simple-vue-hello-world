@@ -18,17 +18,17 @@
     var vue = new Vue({
       el: '#app', // element
       data: {
-        message: 'Hello World!',
+        message: 'init text, it will be covered after clicking button',
         email: 'sam@test.com'
       },
       methods: {
         getRemoteMessage() {
-            Promise.resolve("Get remote data.")
-                .then((res) => {
-                    this.message = res;
-                });
+          Promise.resolve("Hey, don't click me!")
+            .then((res) => {
+              this.message = res;
+            });
         },
-    },
+      },
     });
   </script>
 </body>
