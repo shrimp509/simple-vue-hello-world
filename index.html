@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>0 Hello World</title>
+</head>
+
+<body>
+  <div id="app">
+    {{ message }}
+    <p>Email: {{ email }}</p>
+    <button v-on:click="getRemoteMessage">Click</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    var vue = new Vue({
+      el: '#app', // element
+      data: {
+        message: 'Hello World!',
+        email: 'sam@test.com'
+      },
+      methods: {
+        getRemoteMessage() {
+            Promise.resolve("Get remote data.")
+                .then((res) => {
+                    this.message = res;
+                });
+        },
+    },
+    });
+  </script>
+</body>
+
+</html>
